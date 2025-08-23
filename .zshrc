@@ -190,3 +190,9 @@ export LESS="${LESS} --mouse"   # Enable mouse support in less/bat
 # set vim as default editor
 # export EDITOR='vim';
 # export VISUAL='vim'
+
+
+# bat configs
+alias cat='bat -pp'     # bat --style=plain --paging=never
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
