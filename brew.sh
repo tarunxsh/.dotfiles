@@ -41,10 +41,12 @@ brew install openssh
 brew install screen
 
 ## vcs
+brew install gh
 brew install git
 brew install git-lfs
 # brew install jj
 
+brew install btop     # better top
 brew install bat      # a cat(1) clone with syntax highlighting and Git integration
 brew install fd       # simple, fast and user-friendly alternative to 'find'
 brew install eza      # modern alternative to ls
