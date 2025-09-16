@@ -127,6 +127,10 @@ function json() {
   echo "$1" | jq .
 }
 
+function jwt-decode() {
+  jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)' <<< $1
+}
+
 
 function fcd() {
   local dir
