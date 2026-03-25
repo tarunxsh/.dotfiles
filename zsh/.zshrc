@@ -107,14 +107,31 @@ source $ZSH/oh-my-zsh.sh
 
 
 # alias eza https://eza.rocks/
+alias zconfig="bat ~/.zshrc"
+alias sz="source ~/.zshrc && echo '~/.zshrc sourced'"
+
 alias ls='eza -l'
+alias rm="rm -i"       # Confirm before deleting
+alias cp="cp -i"       # Confirm before overwriting
+alias mv="mv -i"       # Confirm before overwriting
+alias cwd="pwd | pbcopy"
+alias pbc="pbcopy"
+alias pbp="pbpaste"
+
 alias py="python3"
 alias python="python3"
-alias sz="source ~/.zshrc && echo '~/.zshrc sourced'"
+alias serve="python -m http.server"
+
 alias ip="ifconfig -a | egrep -A 7 '^en0' | grep inet | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | head -n 1"
 alias myip="curl -s -w '\n' http://api.ipify.org"
+alias myip6="curl ifconfig.me"
+
 alias path='echo; tr ":" "\n" <<< "$PATH"; echo;'       # Pretty print PATH
 alias psg='ps aux | grep -v grep | grep -i -e VSZ'      # Pretty print processes"
+alias ports="lsof -i -P -n | grep LISTEN"
+
+alias weather="curl wttr.in"
+alias caly="curl 'wttr.in/?format=3' && (echo '' && cal -y) | bat --language=txt"
 
 # Merge PDF files, preserving hyperlinks
 # Usage: `mergepdf input{1,2,3}.pdf`
