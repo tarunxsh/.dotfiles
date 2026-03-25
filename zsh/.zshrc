@@ -70,8 +70,8 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git web-search z fast-syntax-highlighting  zsh-autocomplete zsh-autosuggestions )
-# plugins+=(zsh-nvm you-should-use fzf-tab)  # some other useful plugins
+plugins=(git aws web-search z zsh-nvm fast-syntax-highlighting zsh-autocomplete zsh-autosuggestions)
+# plugins+=(you-should-use fzf-tab)  # some other useful plugins
 # fast-syntax-highlighting is fast alternative of zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
@@ -190,3 +190,46 @@ export LESS="${LESS} --mouse"   # Enable mouse support in less/bat
 # set vim as default editor
 # export EDITOR='vim';
 # export VISUAL='vim'
+
+alias cat='bat -pp'     # bat --style=plain --paging=never
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
+
+run() { npm run test/functional/$1 }
+
+aws-refresh() {
+  profile=${1:-default}
+  echo "🔄 Refreshing AWS SSO tokens for profile: $profile"
+
+  # login (refresh if expired)
+  aws sso login --profile "$profile" || return 1
+
+  # export creds in env format, capture them
+  creds=$(aws configure export-credentials --profile "$profile" --format env) || return 1
+
+  # eval into shell
+  eval "$creds"
+
+  # update ~/.aws/credentials
+  aws configure set aws_access_key_id "$AWS_ACCESS_KEY_ID" --profile "$profile"
+  aws configure set aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile "$profile"
+  aws configure set aws_session_token "$AWS_SESSION_TOKEN" --profile "$profile"
+
+  # verify identity
+  # aws sts get-caller-identity --profile "$profile"
+
+  # print creds to terminal
+  echo ""
+  echo "✅ Tokens valid until: $AWS_CREDENTIAL_EXPIRATION"
+  echo "👉 Here are your updated AWS creds:"
+  echo "$creds"
+}
+
+export PATH="$HOME/.local/bin:$PATH"
+# bun completions
+[ -s "/Users/tarunxsh1/.bun/_bun" ] && source "/Users/tarunxsh1/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

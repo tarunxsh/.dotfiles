@@ -1,6 +1,136 @@
-My dotfiles and setup
+# My dotfiles
+
+### Managing Dotfiles with GNU Stow
+
+GNU Stow is a symlink farm manager that makes dotfile management clean and elegant. Here's how to use it correctly.
+
+### The Core Concept
+
+Stow works by creating symlinks from a **source directory** (your dotfiles repo) into a **target directory** (usually `$HOME`). The directory structure inside your stow package mirrors where the files should live relative to the target.
+
 ---
 
+### 1. Set Up Your Dotfiles Directory
+
+```bash
+mkdir ~/dotfiles
+cd ~/dotfiles
+git init
+```
+
+---
+
+### 2. Structure Your Packages
+
+Each **subdirectory** in `~/dotfiles` is a "package". Inside it, replicate the directory structure relative to `$HOME`:
+
+1. `.stow-local-ignore` - stow igore file
+2. `brew.sh` - install script for Homebrew
+
+```
+~/dotfiles/
+├── bash/
+│   ├── .bashrc
+│   └── .bash_profile
+├── git/
+│   └── .gitconfig
+├── nvim/
+│   └── .config/
+│       └── nvim/
+│           ├── init.lua
+│           └── lua/
+│               └── plugins.lua
+├── tmux/
+│   └── .tmux.conf
+├── .stow-local-ignore 
+├── brew.sh 
+```
+
+So `bash/.bashrc` → symlinks to `~/.bashrc`.
+Similarly `nvim/.config/nvim/init.lua` → symlinks to `~/.config/nvim/init.lua`
+
+---
+
+### 3. Stow a Package
+
+```bash
+cd ~/dotfiles
+
+# Stow a single package
+stow bash
+
+# Stow multiple packages at once
+stow bash git nvim tmux
+
+# Stow all packages (from the dotfiles root)
+stow */
+```
+
+This creates symlinks in `$HOME` pointing back into `~/dotfiles`.
+
+---
+
+### 4. Key Flags to Know
+
+| Flag | Purpose |
+|---|---|
+| `-n` / `--no` | **Dry run** — preview what would happen |
+| `-v` | Verbose output |
+| `-D` | **Delete** (remove symlinks for a package) |
+| `-R` | **Restow** — delete then re-stow (useful after restructuring) |
+| `--target=DIR` | Set a custom target directory |
+| `--dotfiles` | Auto-expand `dot-` prefix to `.` in filenames |
+
+```bash
+stow -nv bash        # dry run first — always a good habit
+stow -D bash         # unstow / remove symlinks
+stow -R bash         # restow after changes
+```
+
+---
+
+### 6. The `--dotfiles` Flag (Modern Convenience)
+
+If you don't like hidden directories in your repo, you can use the `dot-` prefix convention:
+
+```
+~/dotfiles/bash/
+├── dot-bashrc        →  ~/.bashrc
+└── dot-bash_profile  →  ~/.bash_profile
+```
+
+Then stow with:
+
+```bash
+stow --dotfiles bash
+```
+
+---
+
+### 7. Typical Workflow
+
+```bash
+# 1. Move an existing config into your dotfiles repo
+mv ~/.bashrc ~/dotfiles/bash/.bashrc
+
+# 2. Dry run to verify
+stow -nv bash
+
+# 3. Stow it
+stow bash
+
+# 4. Commit
+cd ~/dotfiles && git add . && git commit -m "add bash config"
+
+# 5. On a new machine:
+git clone https://github.com/you/dotfiles ~/dotfiles
+cd ~/dotfiles
+stow bash git nvim tmux
+```
+
+---
+
+## Some useful packages
 
 1. Install [intel-one-mono](https://github.com/intel/intel-one-mono) font    
 
