@@ -107,7 +107,23 @@ stow --dotfiles bash
 
 ---
 
-### 7. Typical Workflow
+### 7. Adopt an Existing Config
+
+Use `--adopt` to pull an existing file from `$HOME` into your dotfiles repo and symlink it back
+
+```bash
+# 1. Create the package dir and a placeholder file
+mkdir -p ~/dotfiles/mycli
+touch ~/dotfiles/mycli/.myclirc
+
+# 2. Adopt — stow moves the real ~/.myclirc into the package and symlinks it
+cd ~/dotfiles
+stow --adopt mycli
+```
+
+---
+
+### 8. Typical Workflow
 
 ```bash
 # 1. Move an existing config into your dotfiles repo

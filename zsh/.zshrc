@@ -78,6 +78,10 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Custom functions file
+ZSH_FUNCTIONS="$HOME/.zsh_functions"
+[[ -f "$ZSH_FUNCTIONS" ]] && source "$ZSH_FUNCTIONS"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -132,6 +136,8 @@ alias ports="lsof -i -P -n | grep LISTEN"
 
 alias weather="curl wttr.in"
 alias caly="curl 'wttr.in/?format=3' && (echo '' && cal -y) | bat --language=txt"
+
+alias ci='circleci'
 
 # Merge PDF files, preserving hyperlinks
 # Usage: `mergepdf input{1,2,3}.pdf`
