@@ -112,6 +112,7 @@ ZSH_FUNCTIONS="$HOME/.zsh_functions"
 
 # alias eza https://eza.rocks/
 alias zconfig="bat ~/.zshrc"
+alias lhome="la ~/"
 alias sz="source ~/.zshrc && echo '~/.zshrc sourced'"
 
 alias ls='eza -l'
@@ -138,6 +139,7 @@ alias weather="curl wttr.in"
 alias caly="curl 'wttr.in/?format=3' && (echo '' && cal -y) | bat --language=txt"
 
 alias ci='circleci'
+alias remote='git_url=$(git remote get-url origin) && formatted_url=$(echo $git_url | sed "s/\.git$//" | sed "s/git@github.com:/https:\/\/github.com\//") && open "$formatted_url"'
 
 # Merge PDF files, preserving hyperlinks
 # Usage: `mergepdf input{1,2,3}.pdf`
