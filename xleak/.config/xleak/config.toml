@@ -1,0 +1,9 @@
+[ui]
+max_rows = 50
+column_width = 30
+
+[theme]
+default = "Github Dark"
+
+[keybindings]
+# profile = "vim"

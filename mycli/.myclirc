@@ -356,7 +356,7 @@ output.timing = ""
 # Initial commands to execute when connecting to any database.
 [init-commands]
 # read_only = "SET SESSION TRANSACTION READ ONLY"
-limited = "SET sql_select_limit=100; SET time_zone='+00:00'"
+# limited = "SET sql_select_limit=100; SET time_zone='+00:00'"
 
 
 # Use the -d option to reference a DSN.
