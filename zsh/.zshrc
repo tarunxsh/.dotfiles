@@ -115,6 +115,8 @@ alias zconfig="bat ~/.zshrc"
 alias sz="source ~/.zshrc && echo '~/.zshrc sourced'"
 
 alias ls='eza -l'
+alias c="clear"
+alias clear-folder="rm -rfi ./*"
 alias rm="rm -i"       # Confirm before deleting
 alias cp="cp -i"       # Confirm before overwriting
 alias mv="mv -i"       # Confirm before overwriting
@@ -187,6 +189,7 @@ function calc() {
 
 
 # Create a new directory and enter it
+unalias md 2>/dev/null  # frmo oh-my-zsh, remove if already defined
 function md() {
 	mkdir -p "$@" && cd "$@"
 }
@@ -260,3 +263,5 @@ export PATH="$HOME/.local/bin:$PATH"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+. "/Users/tarunxsh.gautam/.deno/env"
+eval "$(mise activate zsh)"
