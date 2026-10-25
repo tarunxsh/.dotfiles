@@ -13,3 +13,12 @@
 	s = status -s
 	df = diff --color --color-words --abbrev
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+[user]
+	email = taruneshkumar1234@gmail.com
+	name = tarunxsh
+
+# Git configuration for work projects
+# Loads the ~/.gitconfig-work file when working in the ~/mac/dev/albert/ directory
+[includeIf "gitdir:~/mac/dev/albert/"]
+    path = ~/.gitconfig-work
