@@ -1,0 +1,9 @@
+[tools]
+node = "latest"
+pnpm = "latest"
+bun = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
+
+[env]
