@@ -1,5 +1,10 @@
 # My dotfiles
 
+```bash
+git clone https://github.com/tarunxsh/.dotfiles.git ~/.dotfiles
+~/.dotfiles/setup.sh
+```
+
 ### Managing Dotfiles with GNU Stow
 
 GNU Stow is a symlink farm manager that makes dotfile management clean and elegant. Here's how to use it correctly.
