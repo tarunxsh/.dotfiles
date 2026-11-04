@@ -1,0 +1,69 @@
+{
+  "editor.suggestSelection": "first",   // default to first suggestion in the completion widget
+  "editor.stickyScroll.enabled": true,
+  "editor.fontFamily": "Monaspace Argon",
+  "editor.fontSize": 12,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": false,    // do not merge characters
+  "editor.renderWhitespace": "boundary",
+  "editor.cursorStyle": "line",
+  "editor.smoothScrolling": true,
+  "editor.tabCompletion": "on",
+  "editor.mouseWheelZoom": true,
+  "editor.definitionLinkOpensInPeek": false,    // Open 'Go to Definition' links in a full editor
+  "editor.formatOnType": true,
+  "editor.foldingStrategy": "auto",   // prefer language-defined folding Strategy else use indentation
+  "editor.inlayHints.enabled": "on",  // Show inline parameter names, type annotations, and variable hints
+  "debug.inlineValues": "on",         // display debug values inline next to source code
+  "security.workspace.trust.untrustedFiles": "open",    // Allow opening files in untrusted workspaces
+
+  // Run defined code actions (e.g., auto-imports/fixes) on focus change
+  "editor.codeActions.triggerOnFocusChange": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.addMissingImports": "explicit",
+    "source.removeUnusedImports": "explicit",
+    "source.fixAll": "explicit"
+  },
+  "[<lang>]": {"editor.codeActionsOnSave": {}},         // language-specific overrides for code actions on save
+  "js/ts.updateImportsOnFileMove.enabled": "always",    // Automatically update import paths when refactoring
+
+  "workbench.colorTheme": "Srcery",
+  "workbench.sideBar.location": "right",
+  "workbench.editor.labelFormat": "medium",
+  "workbench.settings.applyToAllProfiles": [
+    "editor.fontFamily"
+  ],
+  "window.nativeFullScreen": true,
+  "window.newWindowDimensions": "fullscreen",   // Open new VS Code windows in full screen mode by default
+  "window.restoreWindows": "all",
+  "window.restoreFullscreen": true,
+
+  "terminal.integrated.mouseWheelZoom": false,
+  "terminal.integrated.fontSize": 11,
+  "terminal.external.osxExec": "/Applications/iTerm.app",
+  "terminal.explorerKind": "both",    // Right click shows both open in intergrated or external terminal
+
+  "diffEditor.ignoreTrimWhitespace": false,   // ignore whitespace changes when comparing files
+  "diffEditor.codeLens": true,                // Show code actions (revert, stage) directly inside diff views
+  "diffEditor.experimental.showMoves": true,  // highlight moved code blocks in diff views
+  "git.openRepositoryInParentFolders": "always",  // search for Git repositories in parent directories
+  "git.suggestSmartCommit": false,    // disable smart commit prompts (e.g., prompting to stage all changes when none are staged)
+
+  // Custom run commands per language for the Code Runner extension
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "python": "python",
+    "go": "go run",
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "cpp": "g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt < io/input.txt > io/output.txt"
+  },
+
+  // Whitelisted URLs for automatic JSON schema fetching and validation
+  "json.schemaDownload.trustedDomains": {
+    "https://biomejs.dev": true
+  },
+
+  "github.copilot.nextEditSuggestions.enabled": false,    // Disable next-edit predictions from GitHub Copilot
+}
