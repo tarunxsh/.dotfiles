@@ -132,12 +132,14 @@ alias serve="python -m http.server"
 alias ip="ifconfig -a | egrep -A 7 '^en0' | grep inet | grep -oE '((1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\.){3}(1?[0-9][0-9]?|2[0-4][0-9]|25[0-5])' | head -n 1"
 alias myip="curl -s -w '\n' http://api.ipify.org"
 alias myip6="curl ifconfig.me"
+alias nq="networkQuality -s"        # macOS Monterey and later only
 
 alias path='echo; tr ":" "\n" <<< "$PATH"; echo;'       # Pretty print PATH
 alias psg='ps aux | grep -v grep | grep -i -e VSZ'      # Pretty print processes"
 alias ports="lsof -i -P -n | grep LISTEN"
 
-alias weather="curl wttr.in"
+# alias wttr="curl wttr.in"
+alias wttr="curl https://wthrtxt.com"
 alias caly="curl 'wttr.in/?format=3' && (echo '' && cal -y) | bat --language=txt"
 
 alias ci='circleci'
