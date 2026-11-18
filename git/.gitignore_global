@@ -26,3 +26,6 @@
 .DS_Store?
 .Trashes
 .notes/
+
+# JS files
+/node_modules
