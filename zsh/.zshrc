@@ -216,6 +216,27 @@ function gurl() {
   echo "https://github.com/$user_repo"
 }
 
+# git init that copies global ingore file to pwd
+ginit() {
+  git init "$@"
+
+  # Get the global gitignore path from Git config
+  local global_ignore=$(git config --get core.excludesfile)
+  
+  # Fallback to default excludesfile if not configured
+  if [[ -z "$global_ignore" ]]; then
+    global_ignore="$HOME/.config/git/ignore"
+  fi
+
+  # Expand tilde (~) if present and copy the file
+  global_ignore="${global_ignore/#\~/$HOME}"
+  
+  if [[ -f "$global_ignore" ]]; then
+    cp "$global_ignore" .gitignore
+    echo "Copied global gitignore from $global_ignore to .gitignore"
+  fi
+}
+
 export LESS="${LESS} --mouse"   # Enable mouse support in less/bat
 
 # Don’t clear the screen after quitting a manual page.
